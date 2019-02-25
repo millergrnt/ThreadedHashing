@@ -122,7 +122,7 @@ public class Worker extends Thread {
             for(File child : dirChildren) {
 
                 // For every file in the dir start a new worker with that directory
-                Worker w = new Worker(child, "MD5");
+                Worker w = new Worker(child, this.hashMethod);
                 dirWorkers.add(w);
                 w.start();
             }
