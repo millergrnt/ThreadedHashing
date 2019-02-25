@@ -19,13 +19,14 @@ public class ThreadedHashingMain {
      */
     public static void main(String[] args) {
 
+        // Make sure the start location is supplied
         if(args.length < 1) {
             System.err.println("Usage: java ThreadedHashingMain startLocation");
             System.exit(1);
         }
 
+        // Save the start location and attempt to create the file object
         String startLocation = args[0];
-
         File file = null;
 
         try {
@@ -38,10 +39,11 @@ public class ThreadedHashingMain {
             System.exit(1);
         }
 
+        // Start the main worker thread
         Worker mainWorker = new Worker(file, "MD5");
+        mainWorker.start();
 
-        mainWorker.run();
-
+        // Join the main worker thread
         try {
             mainWorker.join();
         } catch (InterruptedException e) {
@@ -49,6 +51,7 @@ public class ThreadedHashingMain {
             System.exit(1);
         }
 
+        // Print results
         System.out.println(String.format("%s %s digest: %s",
                 file.getAbsolutePath(), mainWorker.getHashMethod(), mainWorker.getHashResult()));
     }
