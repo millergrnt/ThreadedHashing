@@ -48,5 +48,8 @@ public class ThreadedHashingMain {
             e.printStackTrace();
             System.exit(1);
         }
+
+        System.out.println(String.format("%s %s digest: %s",
+                file.getAbsolutePath(), mainWorker.getHashMethod(), mainWorker.getHashResult()));
     }
 }
