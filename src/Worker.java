@@ -4,7 +4,6 @@
     Description: Does the threaded work for the program
  */
 
-
 import java.io.*;
 import java.nio.file.Files;
 import java.security.MessageDigest;
@@ -14,6 +13,10 @@ import java.util.ArrayList;
 /**
  * Worker class will do the actual work for the program,
  * opening file, reading it, hashing it.
+ * Author: Grant Miller <gem1086.rit.edu>
+ * File: Worker.java
+ * Date: 25 February 2019
+ * Version: 0.1
  */
 public class Worker extends Thread {
 

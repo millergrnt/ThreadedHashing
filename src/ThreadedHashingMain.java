@@ -9,6 +9,10 @@ import java.io.File;
 
 /**
  * Main function of the program. Parses command line args and then spawns the threads
+ * Author: Grant Miller <gem1086.rit.edu>
+ * File: ThreadedHashingMain.java
+ * Date: 25 February 2019
+ * Version: 0.1
  */
 public class ThreadedHashingMain {
 
