@@ -13,9 +13,12 @@ ArgumentParser.java
 Argument.java
 
 The parser sets unfound arguments to null or false if it is of Argtype.FLAG type.
-Any values found in the argument string that are not associated with a flag (val1, val2)
+Any values found in the argument string that are not associated with a flag are 
+returned in the extraArgs string array in the ParseResult object.
+
+Example:
 val1 --flagName something val2
-are returned in the extraArgs string array in the ParseResult object.
+val1 and val2 will be returned in the extraArgs array in the ParseResult object.
 
 # Argument Parser Usage
 ```
