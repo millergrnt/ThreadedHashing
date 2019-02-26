@@ -70,6 +70,13 @@ public class Argument {
 
 
     /**
+     * val getter
+     * @return Value of this argument
+     */
+    public Object getVal() { return this.val; }
+
+
+    /**
      * Gets the type of this argument
      * @return type of the argument
      */

@@ -51,6 +51,13 @@ public class Worker extends Thread {
         return this.hashMethod;
     }
 
+
+    /**
+     * File getter
+     * @return this worker's file
+     */
+    public File getFile() { return this.file; }
+
     /**
      * Does the digesting for the worker
      * @param content Content to digest
