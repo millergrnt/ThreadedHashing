@@ -40,15 +40,6 @@ public class ArgumentParser {
 
 
     /**
-     * Args getter
-     * @return the list of args
-     */
-    public HashMap<String, Argument> getArgShortList() {
-        return argShortList;
-    }
-
-
-    /**
      * Parse the command string based on the Argument objects
      * in this parsing object
      * @param argString The arguments string
@@ -88,7 +79,7 @@ public class ArgumentParser {
                         }
 
                         // Set the previous arg to the recent argument
-                        prevArg = this.argLongList.get(s);
+                        prevArg = this.argShortList.get(s);
                     }
                 } else {
 
@@ -107,7 +98,25 @@ public class ArgumentParser {
                 if(prevArg != null) {
 
                     // Set the value of the argument then reset prevArg back to null
-                    prevArg.setVal(s);
+                    if(prevArg.getType() == Argtype.INTEGER) {
+
+                        try {
+                            // parse the int
+                            prevArg.setVal(Integer.parseInt(s));
+                        } catch (NumberFormatException e) {
+                            // Set the value to null if a number is not supplied
+                            prevArg.setVal(null);
+                        }
+                    } else
+
+                        // Just save the string
+                        prevArg.setVal(s);
+
+                    // Save the newly updated argument
+                    this.argShortList.put(prevArg.getArgShortName(), prevArg);
+                    this.argLongList.put(prevArg.getArgFullName(), prevArg);
+
+                    // Set previous argument to null
                     prevArg = null;
                 } else
 
@@ -125,25 +134,5 @@ public class ArgumentParser {
 
             // returns a new ParserResult with the short list
             return new ParserResult(extraArgs, this.argShortList);
-    }
-
-    public static void main(String[] args) {
-
-        //TODO handle cases where argument is appended to end of name of flag
-        String[] myargs = {"-o", "file.txt", "-i", "in.txt", "--setTrue"};
-
-        //, "--number7", "-pSomething", "--bob=2"};
-
-        ArgumentParser parser = new ArgumentParser();
-        parser.addArgument(Argtype.STRING, "output", "o");
-        parser.addArgument(Argtype.STRING, "input", "i");
-        parser.addArgument(Argtype.FLAG, "setTrue", "t");
-        parser.addArgument(Argtype.INTEGER, "number", "n");
-        parser.addArgument(Argtype.STRING, "philly", "p");
-        parser.addArgument(Argtype.INTEGER, "bob", "b");
-
-        ParserResult res = parser.parseArgs(myargs, true);
-
-        System.out.println("Hi");
     }
 }

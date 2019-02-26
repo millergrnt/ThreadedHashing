@@ -32,6 +32,14 @@ public class Argument {
         this.type = type;
         this.argFullName = argFullName;
         this.argShortName = argShortName;
+
+        // if this argument is a flag it will be null by default
+        if(type == Argtype.FLAG)
+            this.val = false;
+        else
+
+            // Default values are null otherwise
+            this.val = null;
     }
 
 
